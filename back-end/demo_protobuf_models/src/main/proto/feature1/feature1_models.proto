@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.company.proto.feature1.models";
+
+message Feature1ModelProto {
+  string key = 1;
+  ProductType type = 2;
+}
+
+enum ProductType {
+  THRIVE = 0;
+  BOOST = 1;
+}

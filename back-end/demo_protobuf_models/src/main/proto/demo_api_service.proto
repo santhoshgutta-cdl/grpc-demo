@@ -1,0 +1,36 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.company.proto.model.commons";
+
+message DemoApiRequestProto {
+  //empty request
+}
+
+message DemoApiResponseDataProto {
+  int32 integerValue = 1;
+  string stringValue = 2;
+  int64 longValue = 3;
+  double doubleValue = 4;
+}
+
+message ErrorProto {
+  string code = 1;
+  string message = 2;
+}
+
+message DemoApiResponseProto {
+  DemoApiResponseDataProto data = 1;
+  repeated ErrorProto errors = 2;
+}
+
+{
+  "data": {},
+"errors": []
+    }
+
+service DemoGrpcApiService {
+  rpc unaryRequestAndResponse (DemoApiRequestProto) returns (DemoApiResponseProto);
+  rpc streamingRequestAndUnaryResponse (stream DemoApiRequestProto) returns (DemoApiResponseProto);
+  rpc unaryRequestAndStreamingResponse (DemoApiRequestProto) returns (stream DemoApiResponseProto);
+  rpc streamingRequestAndResponse (stream DemoApiRequestProto) returns (stream DemoApiResponseProto);
+}
